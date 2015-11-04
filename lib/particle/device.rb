@@ -162,15 +162,15 @@ module Particle
     end
 
     def self.list_path
-      base_path
+      "/v1/devices"
     end
 
     def self.claim_path
-      base_path
+      "/v1/devices"
     end
 
     def base_path
-      if @client.organization.blank?
+      if @client.organization.nil?
         "/v1/devices"
       else
         "/v1/orgs/#{@client.organization}/devices"
