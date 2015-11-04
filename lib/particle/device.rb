@@ -162,15 +162,23 @@ module Particle
     end
 
     def self.list_path
-      "v1/devices"
+      base_path
     end
 
     def self.claim_path
-      "v1/devices"
+      base_path
+    end
+
+    def base_path
+      if @client.organization.blank?
+        "/v1/devices"
+      else
+        "/v1/orgs/#{@client.organization}/devices"
+      end
     end
 
     def path
-      "/v1/devices/#{id_or_name}"
+      "#{base_path}/#{id_or_name}"
     end
 
     def function_path(name)

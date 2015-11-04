@@ -24,6 +24,10 @@ module Particle
         ENV['PARTICLE_ACCESS_TOKEN']
       end
 
+      def organization
+        ENV['PARTICLE_ORGANIZATION']
+      end
+
       # Default options for Faraday::Connection
       # @return [Hash]
       def connection_options

@@ -18,7 +18,7 @@ Ruby client for the [Particle.io] Cloud API with an object-oriented interface
 $ gem install particlerb
 
 # or add to your Gemfile
-gem "particlerb", "~> 0.0.3"
+gem "particlerb", "~> 1.2.0"
 
 # Require the gem
 require 'particle'
@@ -29,7 +29,7 @@ require 'particle'
 **A Particle cloud API access token is necessary for most requests.** You can use the one from the [Web IDE][] for testing, but it's recommended to generate a new token with this gem using `Particle.login` or with the [Particle CLI][] using `particle token new`
 
 ```ruby
-# Provide acess token as an environment variable
+# Provide access token as an environment variable
 ENV['PARTICLE_ACCESS_TOKEN']
 
 # Or configure global authentication credentials
@@ -41,6 +41,25 @@ end
 # Or pass access token when creating a client
 # If no token is passed to Particle::Client.new, the global or environment one is used
 client = Particle::Client.new(access_token: "38bb7b318cc6898c80317decb34525844bc9db55")
+```
+
+### Organizations
+
+If you are managing your Particle devices under an organization, you will need to provide your organization name
+
+```ruby
+# Provide organization as an environment variable
+ENV['PARTICLE_ORGANIZATION']
+
+# If you use Rails, you can put this in config/initializers/particle.rb
+Particle.configure do |c|
+  c.organization = "name-of-organization"
+end
+
+# Or pass the organization when creating a client
+# If no organization is passed to Particle::Client.new, the global or environment one is used
+client = Particle::Client.new(access_token: "38bb7b318cc6898c80317decb34525844bc9db55", organization: "name-of-organization")
+
 ```
 
 ### Making requests
