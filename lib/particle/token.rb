@@ -21,7 +21,7 @@ module Particle
     alias_method :id, :token
     alias_method :access_token, :token
 
-    attribute_reader :expires_at, :client
+    attribute_reader :expires_at, :client, :scope
 
     # Tokens can't be loaded. What you see is what you get...
     def get_attributes
@@ -50,6 +50,13 @@ module Particle
     #                          the Particle Cloud API
     def create(username, password)
       @client.create_token(username, password)
+    end
+
+    # Create a Particle Customer-scoped token
+    # @param username [String] The username (email) used to log in to
+    #                          the Particle Cloud API
+    def create_customer_token(username)
+      @client.create_customer_token(username)
     end
 
     # Remove a Particle token
