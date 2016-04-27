@@ -27,16 +27,9 @@ module Particle
       #                          the Particle Cloud API
       # @return [Customer] The customer object
       def create_customer(email)
-        data = URI.encode_www_form({
-          email: email,
-          no_password: true
-        })
-        http_options = {
-          headers: { content_type: "application/x-www-form-urlencoded" },
-          client_id: self.client_id,
-          client_secret: self.client_secret
-        }
-        result = request(:post, customer.base_path, data, http_options)
+        self.connection.basic_auth(self.client_id, self.client_secret)
+
+        result = post(customer.base_path, email: email, no_password: true)
         customer(result)
       end
     end
