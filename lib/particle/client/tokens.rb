@@ -66,6 +66,31 @@ module Particle
         token(result)
       end
 
+      # Authenticate with Particle and create a new Customer-scoped token
+      #
+      # @param username [String] The username (email) used to log in to
+      #                          the Particle Cloud API
+      # @param options [Hash] Optional Particle Cloud API options to
+      #                       create the token.
+      #                       :expires_in => How many seconds should the token last for?
+      #                                      0 means a token that never expires
+      #                       :expires_at => Date and time when should the token expire
+      # @return [Token] The token object
+      def create_customer_token(username, options = {})
+        data = URI.encode_www_form({
+          grant_type: 'client_credentials',
+          scope: "customer=#{username}"
+        }.merge(options))
+        http_options = {
+            headers: { content_type: "application/x-www-form-urlencoded" },
+            username: self.client_id,
+            password: self.client_secret
+        }
+        result = request(:post, Token.create_path, data, http_options)
+        result[:token] = result.delete(:access_token)
+        token(result)
+      end
+
       # Authenticate with Particle and start using the token on the
       # client right away
       #

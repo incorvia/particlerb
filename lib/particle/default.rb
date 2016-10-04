@@ -24,6 +24,18 @@ module Particle
         ENV['PARTICLE_ACCESS_TOKEN']
       end
 
+      def client_id
+        ENV['PARTICLE_CLIENT_ID']
+      end
+
+      def client_secret
+        ENV['PARTICLE_CLIENT_SECRET']
+      end
+
+      def organization
+        ENV['PARTICLE_ORGANIZATION']
+      end
+
       # Default options for Faraday::Connection
       # @return [Hash]
       def connection_options

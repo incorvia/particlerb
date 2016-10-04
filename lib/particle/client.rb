@@ -1,4 +1,5 @@
 require 'particle/connection'
+require 'particle/client/customers'
 require 'particle/client/devices'
 require 'particle/client/publish'
 require 'particle/client/webhooks'
@@ -15,6 +16,7 @@ module Particle
   class Client
     include Particle::Configurable
     include Particle::Connection
+    include Particle::Client::Customers
     include Particle::Client::Devices
     include Particle::Client::Publish
     include Particle::Client::Webhooks
