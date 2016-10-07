@@ -19,7 +19,15 @@ module Particle
     end
 
     def base_path
-      "/v1/orgs/#{@client.organization}/customers"
+      "/v1/products"
+    end
+
+    def customers_path(scope)
+      "#{base_path}/#{scope}/customers"
+    end
+
+    def product_customer_path(product_slug)
+      customers_path(product_slug)
     end
   end
 end
