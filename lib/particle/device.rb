@@ -182,6 +182,15 @@ module Particle
       "/v1/devices"
     end
 
+
+    def self.product_path
+      "/v1/products"
+    end
+
+    def self.create_device_path(product_slug)
+      "#{product_path}/#{product_slug}/devices"
+    end
+
     def base_path
       if @client.organization.nil?
         "/v1/devices"

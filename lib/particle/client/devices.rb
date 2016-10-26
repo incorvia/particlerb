@@ -47,6 +47,16 @@ module Particle
         device(result[:id])
       end
 
+      # Add a Particle device to your account
+      #
+      # @param target [String, Device] A device id or {Device} object.
+      #                                You can't claim a device by name
+      # @return [Device] A device object to interact with
+      def create_device(target, product_slug)
+        post(Device.create_device_path(product_slug), id: target)
+      end
+
+
       # Remove a Particle device from your account
       #
       # @param target [String, Device] A device id, name or {Device} object
