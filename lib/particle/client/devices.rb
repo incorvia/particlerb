@@ -47,6 +47,11 @@ module Particle
         device(result[:deviceID])
       end
 
+      def unclaim_device(target, product_slug)
+        result = delete(Device.unclaim_device_path(device(target).id_or_name, product_slug))
+        result[:ok]
+      end
+
       # Add a Particle device to your account
       #
       # @param target [String, Device] A device id or {Device} object.

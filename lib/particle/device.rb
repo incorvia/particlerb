@@ -75,6 +75,10 @@ module Particle
       self
     end
 
+    def unclaim(product_slug)
+      @client.unclaim_device(self, product_slug)
+    end
+
     # Remove a Particle device from your account
     #
     # @example Add a Photon by its id
@@ -189,6 +193,10 @@ module Particle
 
     def self.create_device_path(product_slug)
       "#{product_path}/#{product_slug}/devices"
+    end
+
+    def self.unclaim_device_path(id_or_name, product_slug)
+      "#{product_path}/#{product_slug}/devices/#{id_or_name}/owner"
     end
 
     def base_path
