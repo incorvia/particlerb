@@ -44,7 +44,7 @@ module Particle
       # @return [Device] A device object to interact with
       def claim_device(target)
         result = post(Device.claim_path, id: device(target).id_or_name)
-        device(result[:deviceID])
+        device(result[:id] || result[:deviceID])
       end
 
       def unclaim_device(target, product_slug)
